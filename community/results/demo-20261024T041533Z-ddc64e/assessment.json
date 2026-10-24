@@ -1,0 +1,644 @@
+{
+  "schema_version": 1,
+  "policy": "owner-scoring-policy-v4",
+  "findings": [
+    {
+      "penalty_id": "F1C-GEN03",
+      "defect_id": "requirement.OU20",
+      "reason": "отчёт не соответствует заданию: OU20",
+      "evidence": [],
+      "proof_kind": "requirement_verdict"
+    },
+    {
+      "penalty_id": "F1C-GEN01",
+      "defect_id": "requirement.PR11",
+      "reason": "не выполнено требование: PR11 — pr_trip E4/B trip: 431.32, expected 421.13 (one rate for the trip) or 469.95 (own rate in each month)",
+      "evidence": [],
+      "proof_kind": "requirement_verdict"
+    },
+    {
+      "penalty_id": "F1C-GEN01",
+      "defect_id": "requirement.PR13",
+      "reason": "не выполнено требование: PR13 — pr_backdate E4/B tariff 2025-02: 1920, expected 1680.00; trip entered back-dated: 458.25, entered in order: 431.32",
+      "evidence": [],
+      "proof_kind": "requirement_verdict"
+    },
+    {
+      "penalty_id": "F1C-PR15",
+      "defect_id": "requirement.PR13",
+      "reason": "не выполнено требование: PR13 — pr_backdate E4/B tariff 2025-02: 1920, expected 1680.00; trip entered back-dated: 458.25, entered in order: 431.32",
+      "evidence": [],
+      "proof_kind": "requirement_verdict"
+    },
+    {
+      "penalty_id": "F1C-GEN18",
+      "defect_id": "requirement.PR13",
+      "reason": "не выполнено требование: PR13 — pr_backdate E4/B tariff 2025-02: 1920, expected 1680.00; trip entered back-dated: 458.25, entered in order: 431.32",
+      "evidence": [],
+      "proof_kind": "requirement_verdict"
+    },
+    {
+      "penalty_id": "F1C-GEN15",
+      "defect_id": "query.Reports/Премии/Ext/ObjectModule.bsl:3.РегистрРасчета.Начисления",
+      "reason": "Reports/Премии/Ext/ObjectModule.bsl:3 — РегистрРасчета.Начисления: отбор по ВидРасчета, ПериодДействияНачало, индексы таблицы начинаются с ПериодДействия, ПериодРегистрации, Подразделение, Регистратор, Сотрудник",
+      "evidence": [
+        {
+          "file": "Reports/Премии/Ext/ObjectModule.bsl",
+          "line": 3,
+          "text": "РегистрРасчета.Начисления: отбор по ВидРасчета, ПериодДействияНачало, индексы таблицы начинаются с ПериодДействия, ПериодРегистрации, Подразделение, Регистратор, Сотрудник"
+        }
+      ],
+      "proof_kind": "query_schema"
+    },
+    {
+      "penalty_id": "F1C-BU06",
+      "defect_id": "bu.flags",
+      "reason": "ресурс Количество без признака учёта — количество ведётся на всех счетах",
+      "evidence": [],
+      "proof_kind": "static_metadata"
+    },
+    {
+      "penalty_id": "F1C-BU05",
+      "defect_id": "bu.dimensions",
+      "reason": "аналитика счетов вынесена в измерения регистра бухгалтерии и есть у всех счетов: Номенклатура (Номенклатура), Склад (Склады)",
+      "evidence": [],
+      "proof_kind": "static_metadata"
+    },
+    {
+      "penalty_id": "F1C-PR08",
+      "defect_id": "pr.base_main_table",
+      "reason": "база берётся из основной таблицы регистра расчёта, БазаНачисления нигде не используется: Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl:2; Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl:35",
+      "evidence": [
+        {
+          "file": "Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl",
+          "line": 2,
+          "text": "запрос к основной таблице РегистрРасчета.Начисления"
+        },
+        {
+          "file": "Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl",
+          "line": 35,
+          "text": "запрос к основной таблице РегистрРасчета.Начисления"
+        }
+      ],
+      "proof_kind": "code_sign"
+    },
+    {
+      "penalty_id": "F1C-GEN28",
+      "defect_id": "practice.EXM01",
+      "reason": "оперативное проведение разрешено у документов с движениями по регистрам расчёта: НачислениеЗарплаты",
+      "evidence": [],
+      "proof_kind": "code_sign"
+    }
+  ],
+  "statuses": {
+    "F1C-OU01": {
+      "status": "no_violation_found",
+      "reason": "раздел есть: часть требований выполнена"
+    },
+    "F1C-GEN03": {
+      "status": "violation",
+      "reason": "отчёт не соответствует заданию: OU20"
+    },
+    "F1C-BU01": {
+      "status": "no_violation_found",
+      "reason": "раздел есть: часть требований выполнена"
+    },
+    "F1C-PR01": {
+      "status": "no_violation_found",
+      "reason": "раздел есть: часть требований выполнена"
+    },
+    "F1C-GEN01": {
+      "status": "violation",
+      "reason": "не выполнено требование: PR13 — pr_backdate E4/B tariff 2025-02: 1920, expected 1680.00; trip entered back-dated: 458.25, entered in order: 431.32"
+    },
+    "F1C-PR15": {
+      "status": "violation",
+      "reason": "не выполнено требование: PR13 — pr_backdate E4/B tariff 2025-02: 1920, expected 1680.00; trip entered back-dated: 458.25, entered in order: 431.32"
+    },
+    "F1C-GEN18": {
+      "status": "violation",
+      "reason": "не выполнено требование: PR13 — pr_backdate E4/B tariff 2025-02: 1920, expected 1680.00; trip entered back-dated: 458.25, entered in order: 431.32"
+    },
+    "F1C-UI01": {
+      "status": "no_violation_found",
+      "reason": "раздел есть: часть требований выполнена"
+    },
+    "F1C-GEN12": {
+      "status": "no_violation_found",
+      "reason": "платформа разобрала 17 текстов запросов без ошибок; не проверено: 0 собираемых из частей, 0 со ссылкой на временную таблицу другого запроса"
+    },
+    "F1C-GEN15": {
+      "status": "violation",
+      "reason": "Reports/Премии/Ext/ObjectModule.bsl:3 — РегистрРасчета.Начисления: отбор по ВидРасчета, ПериодДействияНачало, индексы таблицы начинаются с ПериодДействия, ПериодРегистрации, Подразделение, Регистратор, Сотрудник"
+    },
+    "F1C-GEN14": {
+      "status": "no_violation_found",
+      "reason": "признаков нет: платформа разобрала структуру 17 запросов (не разобрано 0); виртуальные таблицы регистров бухгалтерии и расчёта и временные таблицы по индексам не проверяются"
+    },
+    "F1C-GEN22": {
+      "status": "no_violation_found",
+      "reason": "признаков нет: платформа разобрала структуру 17 запросов (не разобрано 0); виртуальные таблицы регистров бухгалтерии и расчёта и временные таблицы по индексам не проверяются"
+    },
+    "F1C-GEN24": {
+      "status": "no_violation_found",
+      "reason": "признаков нет: платформа разобрала структуру 17 запросов (не разобрано 0); виртуальные таблицы регистров бухгалтерии и расчёта и временные таблицы по индексам не проверяются"
+    },
+    "F1C-GEN28": {
+      "status": "violation",
+      "reason": "оперативное проведение разрешено у документов с движениями по регистрам расчёта: НачислениеЗарплаты"
+    },
+    "F1C-PR09": {
+      "status": "no_violation_found",
+      "reason": "признаков нет: платформа разобрала структуру 17 запросов (не разобрано 0); виртуальные таблицы регистров бухгалтерии и расчёта и временные таблицы по индексам не проверяются"
+    },
+    "F1C-GEN09": {
+      "status": "no_violation_found",
+      "reason": "на контрольных данных выполнены требования BU10"
+    },
+    "F1C-BU04": {
+      "status": "no_violation_found",
+      "reason": "на контрольных данных выполнены требования BU07, BU14, BU15"
+    },
+    "F1C-GEN11": {
+      "status": "not_assessed",
+      "reason": "связанные требования не оценены или упали на ошибке в коде: BU07, BU14, BU15, OU11"
+    },
+    "F1C-GEN10": {
+      "status": "not_assessed",
+      "reason": "связанные требования не оценены или упали на ошибке в коде: OU15, OU16, OU17, OU13, BU13"
+    },
+    "F1C-GEN16": {
+      "status": "not_assessed",
+      "reason": "связанные требования не оценены или упали на ошибке в коде: OU12, PR06"
+    },
+    "F1C-PR03": {
+      "status": "no_violation_found",
+      "reason": "на контрольных данных выполнены требования PR10"
+    },
+    "F1C-PR07": {
+      "status": "no_violation_found",
+      "reason": "на контрольных данных выполнены требования PR07"
+    },
+    "F1C-GEN05": {
+      "status": "no_violation_found",
+      "reason": "проведение учитывает запись регистра, введённую ручной операцией (BU02); отчёты так не проверяются"
+    },
+    "F1C-OU04": {
+      "status": "not_assessed",
+      "reason": "не все требования оперативного учёта выполнены: зависимость от формы не исключена"
+    },
+    "F1C-PR16": {
+      "status": "no_violation_found",
+      "reason": "сторно-записи получаются штатным методом ПолучитьДополнение()"
+    },
+    "F1C-GEN19": {
+      "status": "no_violation_found",
+      "reason": "строки с одним товаром проводятся как одна строка, контроль остатка — по документу"
+    },
+    "F1C-GEN17": {
+      "status": "no_violation_found",
+      "reason": "после отмены проведения расходной накладной регистры вернулись к состоянию до её проведения"
+    },
+    "F1C-PR10": {
+      "status": "not_assessed",
+      "reason": "перерасчётов в решении нет"
+    },
+    "F1C-GEN25": {
+      "status": "no_violation_found",
+      "reason": "выгрузок результата запроса только ради одного перебора нет"
+    },
+    "F1C-GEN27": {
+      "status": "no_violation_found",
+      "reason": "основной режим — управляемое приложение, обычных форм нет"
+    },
+    "F1C-GEN30": {
+      "status": "no_violation_found",
+      "reason": "сдача — одна конфигурация для всех разделов"
+    },
+    "F1C-GEN02": {
+      "status": "not_assessed",
+      "reason": "отчёты в конфигурации есть; соответствие каждого объявленного отчёта — по требованиям"
+    },
+    "F1C-GEN32": {
+      "status": "no_violation_found",
+      "reason": "процедура демо-данных проводит документы"
+    },
+    "F1C-GEN29": {
+      "status": "no_violation_found",
+      "reason": "управляемый режим у конфигурации и у задействованных регистров и документов; правильность каждой блокировки в коде не проверяется"
+    },
+    "F1C-OU03": {
+      "status": "no_violation_found",
+      "reason": "AccumulationRegister.Запасы: регистр остатков"
+    },
+    "F1C-OU02": {
+      "status": "no_violation_found",
+      "reason": "остатки ведутся в регистре накопления AccumulationRegister.Запасы"
+    },
+    "F1C-BU02": {
+      "status": "no_violation_found",
+      "reason": "бухгалтерский учёт в регистре бухгалтерии AccountingRegister.Учет"
+    },
+    "F1C-PR02": {
+      "status": "no_violation_found",
+      "reason": "начисления в регистрах расчёта: CalculationRegister.Начисления"
+    },
+    "F1C-PR17": {
+      "status": "no_violation_found",
+      "reason": "объявлены регистры расчёта, не накопления"
+    },
+    "F1C-PR05": {
+      "status": "no_violation_found",
+      "reason": "связь с графиком: CalculationRegister.Начисления"
+    },
+    "F1C-PR04": {
+      "status": "no_violation_found",
+      "reason": "период действия согласован с видами расчёта"
+    },
+    "F1C-PR14": {
+      "status": "no_violation_found",
+      "reason": "после расчёта наборы с периодом действия записываются без перезаписи фактического периода действия"
+    },
+    "F1C-BU06": {
+      "status": "violation",
+      "reason": "ресурс Количество без признака учёта — количество ведётся на всех счетах"
+    },
+    "F1C-BU07": {
+      "status": "not_assessed",
+      "reason": "у счёта товаров нет субконто складов"
+    },
+    "F1C-BU08": {
+      "status": "not_assessed",
+      "reason": "у счёта прибылей и убытков нет субконто"
+    },
+    "F1C-BU05": {
+      "status": "violation",
+      "reason": "аналитика счетов вынесена в измерения регистра бухгалтерии и есть у всех счетов: Номенклатура (Номенклатура), Склад (Склады)"
+    },
+    "F1C-BU11": {
+      "status": "no_violation_found",
+      "reason": "все 16 счетов каркаса на месте"
+    },
+    "F1C-GEN31": {
+      "status": "no_violation_found",
+      "reason": "приходная и расходная накладные общие для разделов"
+    },
+    "F1C-GEN33": {
+      "status": "no_violation_found",
+      "reason": "других видов документов нет"
+    },
+    "F1C-GEN20": {
+      "status": "no_violation_found",
+      "reason": "запросов и чтений регистров в циклах по данным не найдено"
+    },
+    "F1C-GEN21": {
+      "status": "no_violation_found",
+      "reason": "у виртуальных таблиц заданы параметры, отборы по измерениям не вынесены в ГДЕ"
+    },
+    "F1C-PR06": {
+      "status": "no_violation_found",
+      "reason": "в коде проведения нет запросов к таблице регистра графиков"
+    },
+    "F1C-PR08": {
+      "status": "violation",
+      "reason": "база берётся из основной таблицы регистра расчёта, БазаНачисления нигде не используется: Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl:2; Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl:35"
+    },
+    "F1C-PR11": {
+      "status": "no_violation_found",
+      "reason": "перерасчётов нет"
+    },
+    "F1C-GEN04": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    },
+    "F1C-GEN06": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    },
+    "F1C-GEN07": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    },
+    "F1C-GEN08": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    },
+    "F1C-GEN13": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    },
+    "F1C-GEN23": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    },
+    "F1C-BU03": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    },
+    "F1C-BU09": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    },
+    "F1C-BU10": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    },
+    "F1C-PR13": {
+      "status": "not_assessed",
+      "reason": "детектор ещё не реализован"
+    }
+  },
+  "gates": {
+    "core": "passed",
+    "core_sections": {},
+    "locks": "passed",
+    "mechanisms": "no_violation_found"
+  },
+  "score": {
+    "charges": [
+      {
+        "penalty_id": "F1C-GEN03",
+        "defect_id": "requirement.OU20",
+        "reason": "отчёт не соответствует заданию: OU20",
+        "evidence": [],
+        "proof_kind": "requirement_verdict",
+        "points": "0.5",
+        "range": [
+          "0.5",
+          "1.5"
+        ],
+        "source": {
+          "artifact": "ATT83PL.rtf",
+          "text_view": "ATT83PL.txt",
+          "lines": [
+            85,
+            86
+          ]
+        },
+        "also_applicable": []
+      },
+      {
+        "penalty_id": "F1C-GEN01",
+        "defect_id": "requirement.PR11",
+        "reason": "не выполнено требование: PR11 — pr_trip E4/B trip: 431.32, expected 421.13 (one rate for the trip) or 469.95 (own rate in each month)",
+        "evidence": [],
+        "proof_kind": "requirement_verdict",
+        "points": "0.5",
+        "range": [
+          "0.5",
+          "3.0"
+        ],
+        "source": {
+          "artifact": "ATT83PL.rtf",
+          "text_view": "ATT83PL.txt",
+          "lines": [
+            80,
+            82
+          ]
+        },
+        "also_applicable": []
+      },
+      {
+        "penalty_id": "F1C-GEN01",
+        "defect_id": "requirement.PR13",
+        "reason": "не выполнено требование: PR13 — pr_backdate E4/B tariff 2025-02: 1920, expected 1680.00; trip entered back-dated: 458.25, entered in order: 431.32",
+        "evidence": [],
+        "proof_kind": "requirement_verdict",
+        "points": "0.5",
+        "range": [
+          "0.5",
+          "3.0"
+        ],
+        "source": {
+          "artifact": "ATT83PL.rtf",
+          "text_view": "ATT83PL.txt",
+          "lines": [
+            80,
+            82
+          ]
+        },
+        "also_applicable": [
+          "F1C-GEN18",
+          "F1C-PR15"
+        ]
+      },
+      {
+        "penalty_id": "F1C-GEN15",
+        "defect_id": "query.Reports/Премии/Ext/ObjectModule.bsl:3.РегистрРасчета.Начисления",
+        "reason": "Reports/Премии/Ext/ObjectModule.bsl:3 — РегистрРасчета.Начисления: отбор по ВидРасчета, ПериодДействияНачало, индексы таблицы начинаются с ПериодДействия, ПериодРегистрации, Подразделение, Регистратор, Сотрудник",
+        "evidence": [
+          {
+            "file": "Reports/Премии/Ext/ObjectModule.bsl",
+            "line": 3,
+            "text": "РегистрРасчета.Начисления: отбор по ВидРасчета, ПериодДействияНачало, индексы таблицы начинаются с ПериодДействия, ПериодРегистрации, Подразделение, Регистратор, Сотрудник"
+          }
+        ],
+        "proof_kind": "query_schema",
+        "points": "0.5",
+        "range": [
+          "0.5",
+          "0.5"
+        ],
+        "source": {
+          "artifact": "ATT83PL.rtf",
+          "text_view": "ATT83PL.txt",
+          "lines": [
+            112,
+            113
+          ]
+        },
+        "also_applicable": []
+      },
+      {
+        "penalty_id": "F1C-BU06",
+        "defect_id": "bu.flags",
+        "reason": "ресурс Количество без признака учёта — количество ведётся на всех счетах",
+        "evidence": [],
+        "proof_kind": "static_metadata",
+        "points": "1.5",
+        "range": [
+          "1.5",
+          "1.5"
+        ],
+        "source": {
+          "artifact": "ATT83PL.rtf",
+          "text_view": "ATT83PL.txt",
+          "lines": [
+            182,
+            183
+          ]
+        },
+        "also_applicable": []
+      },
+      {
+        "penalty_id": "F1C-BU05",
+        "defect_id": "bu.dimensions",
+        "reason": "аналитика счетов вынесена в измерения регистра бухгалтерии и есть у всех счетов: Номенклатура (Номенклатура), Склад (Склады)",
+        "evidence": [],
+        "proof_kind": "static_metadata",
+        "points": "0.5",
+        "range": [
+          "0.5",
+          "0.5"
+        ],
+        "source": {
+          "artifact": "ATT83PL.rtf",
+          "text_view": "ATT83PL.txt",
+          "lines": [
+            180,
+            181
+          ]
+        },
+        "also_applicable": []
+      },
+      {
+        "penalty_id": "F1C-PR08",
+        "defect_id": "pr.base_main_table",
+        "reason": "база берётся из основной таблицы регистра расчёта, БазаНачисления нигде не используется: Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl:2; Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl:35",
+        "evidence": [
+          {
+            "file": "Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl",
+            "line": 2,
+            "text": "запрос к основной таблице РегистрРасчета.Начисления"
+          },
+          {
+            "file": "Documents/НачислениеЗарплаты/Ext/ObjectModule.bsl",
+            "line": 35,
+            "text": "запрос к основной таблице РегистрРасчета.Начисления"
+          }
+        ],
+        "proof_kind": "code_sign",
+        "points": "2.0",
+        "range": [
+          "2.0",
+          "2.0"
+        ],
+        "source": {
+          "artifact": "ATT83PL.rtf",
+          "text_view": "ATT83PL.txt",
+          "lines": [
+            217,
+            218
+          ]
+        },
+        "also_applicable": []
+      },
+      {
+        "penalty_id": "F1C-GEN28",
+        "defect_id": "practice.EXM01",
+        "reason": "оперативное проведение разрешено у документов с движениями по регистрам расчёта: НачислениеЗарплаты",
+        "evidence": [],
+        "proof_kind": "code_sign",
+        "points": "1.0",
+        "range": [
+          "1.0",
+          "1.0"
+        ],
+        "source": {
+          "artifact": "ATT83PL.rtf",
+          "text_view": "ATT83PL.txt",
+          "lines": [
+            139,
+            140
+          ]
+        },
+        "also_applicable": []
+      }
+    ],
+    "deductions": "7.0",
+    "score_upper_bound": "-2.0",
+    "score": null,
+    "grade": "unsatisfactory",
+    "grade_proof": "upper_bound_below_pass_threshold",
+    "attestation": "not_passed_by_confirmed_penalties",
+    "clamping_applied": false,
+    "bonuses_awarded": "0",
+    "whole_catalogue_checked": false
+  },
+  "assessed": [
+    "F1C-BU01",
+    "F1C-BU02",
+    "F1C-BU04",
+    "F1C-BU05",
+    "F1C-BU06",
+    "F1C-BU11",
+    "F1C-GEN01",
+    "F1C-GEN03",
+    "F1C-GEN05",
+    "F1C-GEN09",
+    "F1C-GEN12",
+    "F1C-GEN14",
+    "F1C-GEN15",
+    "F1C-GEN17",
+    "F1C-GEN18",
+    "F1C-GEN19",
+    "F1C-GEN20",
+    "F1C-GEN21",
+    "F1C-GEN22",
+    "F1C-GEN24",
+    "F1C-GEN25",
+    "F1C-GEN27",
+    "F1C-GEN28",
+    "F1C-GEN29",
+    "F1C-GEN30",
+    "F1C-GEN31",
+    "F1C-GEN32",
+    "F1C-GEN33",
+    "F1C-OU01",
+    "F1C-OU02",
+    "F1C-OU03",
+    "F1C-PR01",
+    "F1C-PR02",
+    "F1C-PR03",
+    "F1C-PR04",
+    "F1C-PR05",
+    "F1C-PR06",
+    "F1C-PR07",
+    "F1C-PR08",
+    "F1C-PR09",
+    "F1C-PR11",
+    "F1C-PR14",
+    "F1C-PR15",
+    "F1C-PR16",
+    "F1C-PR17",
+    "F1C-UI01"
+  ],
+  "examiner": {
+    "EXM01": {
+      "status": "violation",
+      "reason": "оперативное проведение разрешено у документов с движениями по регистрам расчёта: НачислениеЗарплаты"
+    },
+    "EXM02": {
+      "status": "no_violation_found",
+      "reason": "данные графика отбираются по регистратору"
+    },
+    "EXM03": {
+      "status": "no_violation_found",
+      "reason": "значения графика обёрнуты в ЕСТЬNULL"
+    },
+    "EXM04": {
+      "status": "no_violation_found",
+      "reason": "виды расчёта предопределены"
+    },
+    "EXM05": {
+      "status": "no_violation_found",
+      "reason": "расчёт в общем модуле: CommonModules/УчетСервер/Ext/Module.bsl"
+    },
+    "CHS01": {
+      "status": "no_violation_found",
+      "reason": "в ПриЗаписи и ОбработкаПроведения реквизиты объекта не меняются"
+    },
+    "CHS03": {
+      "status": "no_violation_found",
+      "reason": "поля составного типа в запросах приводятся через ВЫРАЗИТЬ или не разыменовываются"
+    },
+    "CHS02": {
+      "status": "no_violation_found",
+      "reason": "дни базы не считаются длиной базового периода"
+    },
+    "STD01": {
+      "status": "violation",
+      "reason": "читаются при проведении без разделяемой блокировки: РегистрСведений.Аналоги, РегистрСведений.Спецификации, РегистрСведений.Ставки, РегистрСведений.УчетныеПолитики, РегистрСведений.ШкалаПремий"
+    }
+  }
+}
