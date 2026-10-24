@@ -283,14 +283,16 @@ def make_pr(job_id, root=ROOT):
         return existing
     fork = UPSTREAM if login.lower() == UPSTREAM.split('/')[0].lower() else login + '/' + UPSTREAM.split('/')[1]
     if fork != UPSTREAM:
-        command([gh, 'repo', 'fork', UPSTREAM, '--clone=false', '--remote=false'])
+        command([gh, 'repo', 'fork', UPSTREAM, '--clone=false'])
     repo_dir = root / '.local/community/checkouts' / job_id
     repo_dir.parent.mkdir(parents=True, exist_ok=True)
     hooks = root / '.local/community/disabled-hooks'
     hooks.mkdir(exist_ok=True)
     safe_git = [git, '-c', 'core.hooksPath=' + str(hooks), '-c', 'commit.gpgsign=false']
     if not repo_dir.exists():
-        command([gh, 'repo', 'clone', fork, repo_dir, '--', '--depth=1', '-c', 'core.hooksPath=' + str(hooks)])
+        protocol = command([gh, 'config', 'get', 'git_protocol', '--host', 'github.com'])
+        clone_url = 'git@github.com:' + fork + '.git' if protocol == 'ssh' else 'https://github.com/' + fork + '.git'
+        command([*safe_git, 'clone', '--depth=1', clone_url, repo_dir])
     # Base is upstream's current default branch, never the participant's dirty worktree.
     default = command([gh, 'repo', 'view', UPSTREAM, '--json', 'defaultBranchRef', '--jq', '.defaultBranchRef.name'])
     remote_branch = command([*safe_git, 'ls-remote', '--heads', 'origin', 'refs/heads/' + branch], repo_dir)

@@ -88,6 +88,29 @@ class ContractTest(unittest.TestCase):
         self.assertEqual((clean['fields']['ledger']['item_debit'],clean['fields']['ledger']['warehouse_credit']),('Item','Kinds.Store'))
         self.assertEqual(len(expanded),1)
         self.assertTrue(check_bindings(self.p/'out'/'src',clean))
+    def test_validate_expands_bare_subconto_before_check_without_rewriting_submission(self):
+        self.subconto_chart()
+        self.b['fields']['ledger'].update(warehouse_debit='Store',warehouse_credit='Store')
+        path=self.p/'out'/'binding.json'
+        path.write_text(json.dumps(self.b))
+        before=tree_manifest(self.p/'out')
+        validated=validate(self.p,self.manifest)
+        self.assertEqual(validated['fields']['ledger']['warehouse_debit'],'Kinds.Store')
+        self.assertEqual(validated['fields']['ledger']['warehouse_credit'],'Kinds.Store')
+        self.assertEqual(tree_manifest(self.p/'out'),before)
+    def test_validate_checks_type_of_expanded_subconto(self):
+        self.subconto_chart(warehouse_type='cfg:CatalogRef.Items')
+        self.b['fields']['ledger']['warehouse_debit']='Store'
+        (self.p/'out'/'binding.json').write_text(json.dumps(self.b))
+        with self.assertRaisesRegex(ValueError,'subconto type mismatch'):
+            validate(self.p,self.manifest)
+    def test_validate_rejects_unknown_bare_subconto(self):
+        from exam_bench.submission import UnsupportedBindings
+        self.subconto_chart()
+        self.b['fields']['ledger']['warehouse_debit']='MissingStore'
+        (self.p/'out'/'binding.json').write_text(json.dumps(self.b))
+        with self.assertRaises(UnsupportedBindings):
+            validate(self.p,self.manifest)
     def test_analogs_in_a_tabular_section_of_the_items_catalog(self):
         src=self.p/'out'/'src';md='xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:v8="http://v8.1c.ru/8.1/data/core"'
         (src/'Catalogs'/'Items.xml').write_text(f'<MetaDataObject {md}><Catalog><Properties><Name>Items</Name></Properties><ChildObjects>'

@@ -254,6 +254,7 @@ def validate(workspace, public_manifest, require_ready=True):
     src=out/'src'
     if not (src/'Configuration.xml').is_file():raise ValueError('No exported Configuration.xml')
     bindings=json.loads((out/'binding.json').read_text(encoding='utf-8'))
+    bindings,_=canonical_ledger(src,bindings)
     check_bindings(src,bindings)
     return bindings
 

@@ -94,16 +94,40 @@ class CommunityBundle(unittest.TestCase):
             dest = root / '.local/community/prepared/demo-test'; dest.parent.mkdir(parents=True)
             f.rename(dest)
             url = 'https://github.com/zeegin/1c-agent-exam-benchmark/pull/123'
-            outputs = ['tester', '', '', '', 'main', '', '', '', '', '', '', url]
+            outputs = ['tester', '', '', 'https', '', 'main', '', '', '', '', '', '', url]
             with patch('tools.community_results.executable', side_effect=lambda x:x), patch('tools.community_results.command', side_effect=outputs) as cmd:
                 self.assertEqual(make_pr('demo-test', root), url)
                 calls = [c.args for c in cmd.call_args_list]
                 fork = next(c[0] for c in calls if c[0][1:3] == ['repo', 'fork'])
-                self.assertIn('--remote=false', fork)
+                self.assertIn('--clone=false', fork)
+                self.assertFalse(any(arg.startswith('--remote') for arg in fork))
+                clone = next(c[0] for c in calls if 'clone' in c[0])
+                self.assertEqual(clone[0], 'git')
+                self.assertLess(clone.index('-c'), clone.index('clone'))
+                self.assertNotIn('-c', clone[clone.index('clone') + 1:])
                 add = next(c for c in calls if 'add' in c[0])
                 self.assertEqual(add[0][-4:], ['add', '-f', '--', 'community/results/demo-test'])
                 self.assertEqual(add[1], root / '.local/community/checkouts/demo-test')
                 self.assertTrue((add[1] / 'community/results/demo-test/solution.dt').is_file())
+
+    def test_pr_clone_preserves_github_cli_transport(self):
+        for protocol, expected in (('ssh', 'git@github.com:tester/1c-agent-exam-benchmark.git'),
+                                   ('https', 'https://github.com/tester/1c-agent-exam-benchmark.git')):
+            with self.subTest(protocol=protocol), tempfile.TemporaryDirectory() as td:
+                root = Path(td); f = fixture(root)
+                dest = root / '.local/community/prepared/demo-test'; dest.parent.mkdir(parents=True)
+                f.rename(dest)
+                url = 'https://github.com/zeegin/1c-agent-exam-benchmark/pull/123'
+                def run(args, cwd=root):
+                    if args[1:3] == ['api', 'user']: return 'tester'
+                    if args[1:3] == ['config', 'get']: return protocol
+                    if args[1:3] == ['repo', 'view']: return 'main'
+                    if args[1:3] == ['pr', 'create']: return url
+                    return ''
+                with patch('tools.community_results.executable', side_effect=lambda x:x), patch('tools.community_results.command', side_effect=run) as cmd:
+                    self.assertEqual(make_pr('demo-test', root), url)
+                    clone = next(c.args[0] for c in cmd.call_args_list if 'clone' in c.args[0])
+                    self.assertIn(expected, clone)
 
     def test_operator_is_explicit_and_login_is_not_a_command(self):
         for data in ({'name': ''}, {'name': 'A', 'github': 'https://github.com/x'}, {'name': 'A', 'github': '--help'}, {'name': 'a\nb'}):
