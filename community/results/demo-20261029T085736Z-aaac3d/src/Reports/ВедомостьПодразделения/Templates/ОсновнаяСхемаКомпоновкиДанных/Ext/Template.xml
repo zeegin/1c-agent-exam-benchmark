@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config"><dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>НаборДанных1</name>
+		<field xsi:type="DataSetFieldField"><dataPath>Номенклатура</dataPath><field>Номенклатура</field></field><field xsi:type="DataSetFieldField"><dataPath>Характеристика</dataPath><field>Характеристика</field></field><field xsi:type="DataSetFieldField"><dataPath>НачальныйОстаток</dataPath><field>НачальныйОстаток</field><title xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>Стоимость</v8:content></v8:item></title></field><field xsi:type="DataSetFieldField"><dataPath>Приход</dataPath><field>Приход</field><title xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>Стоимость</v8:content></v8:item></title></field><field xsi:type="DataSetFieldField"><dataPath>Расход</dataPath><field>Расход</field><title xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>Стоимость</v8:content></v8:item></title></field><field xsi:type="DataSetFieldField"><dataPath>КонечныйОстаток</dataPath><field>КонечныйОстаток</field><title xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>Стоимость</v8:content></v8:item></title></field><field xsi:type="DataSetFieldField"><dataPath>НачальныйОстатокКоличество</dataPath><field>НачальныйОстатокКоличество</field><title xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>Количество</v8:content></v8:item></title></field><field xsi:type="DataSetFieldField"><dataPath>ПриходКоличество</dataPath><field>ПриходКоличество</field><title xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>Количество</v8:content></v8:item></title></field><field xsi:type="DataSetFieldField"><dataPath>РасходКоличество</dataPath><field>РасходКоличество</field><title xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>Количество</v8:content></v8:item></title></field><field xsi:type="DataSetFieldField"><dataPath>КонечныйОстатокКоличество</dataPath><field>КонечныйОстатокКоличество</field><title xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>Количество</v8:content></v8:item></title></field><dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+Остатки.Номенклатура КАК Номенклатура,
+Значения.Характеристика КАК ВидХарактеристики, Значения.Значение КАК Характеристика,
+Остатки.КоличествоНачальныйОстаток КАК НачальныйОстатокКоличество,
+Остатки.КоличествоПриход КАК ПриходКоличество, Остатки.КоличествоРасход КАК РасходКоличество,
+Остатки.КоличествоКонечныйОстаток КАК КонечныйОстатокКоличество,
+Остатки.СтоимостьНачальныйОстаток КАК НачальныйОстаток,
+Остатки.СтоимостьПриход КАК Приход, Остатки.СтоимостьРасход КАК Расход,
+Остатки.СтоимостьКонечныйОстаток КАК КонечныйОстаток
+ИЗ РегистрНакопления.ОстаткиНоменклатуры.ОстаткиИОбороты(&amp;ДатаНачалаОтчета, &amp;ДатаОкончанияОтчета, Авто,, Подразделение = &amp;Подразделение) КАК Остатки
+ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЗначенияСвойств КАК Значения ПО Остатки.Свойство = Значения.Свойство</query>
+	</dataSet>
+	<totalField><dataPath>НачальныйОстаток</dataPath><expression>Сумма(НачальныйОстаток)</expression></totalField><totalField><dataPath>Приход</dataPath><expression>Сумма(Приход)</expression></totalField><totalField><dataPath>Расход</dataPath><expression>Сумма(Расход)</expression></totalField><totalField><dataPath>КонечныйОстаток</dataPath><expression>Сумма(КонечныйОстаток)</expression></totalField><totalField><dataPath>НачальныйОстатокКоличество</dataPath><expression>Сумма(НачальныйОстатокКоличество)</expression></totalField><totalField><dataPath>ПриходКоличество</dataPath><expression>Сумма(ПриходКоличество)</expression></totalField><totalField><dataPath>РасходКоличество</dataPath><expression>Сумма(РасходКоличество)</expression></totalField><totalField><dataPath>КонечныйОстатокКоличество</dataPath><expression>Сумма(КонечныйОстатокКоличество)</expression></totalField><parameter>
+		<name>ДатаНачалаОтчета</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Начало периода</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>true</useRestriction>
+		<expression>НачалоПериода(&amp;Период.ДатаНачала, "ДЕНЬ")</expression>
+	</parameter>
+	<parameter>
+		<name>ДатаОкончанияОтчета</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Конец периода</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>true</useRestriction>
+		<expression>КонецПериода(&amp;Период.ДатаОкончания, "ДЕНЬ")</expression>
+	</parameter>
+	<parameter>
+		<name>Период</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Период</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>v8:StandardPeriod</v8:Type>
+		</valueType>
+		<value xsi:type="v8:StandardPeriod">
+			<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+			<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+			<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+		</value>
+		<useRestriction>false</useRestriction>
+	</parameter>
+	<parameter>
+		<name>Подразделение</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Подразделение</v8:content>
+			</v8:item>
+		</title>
+		<valueType><v8:Type>cfg:CatalogRef.Подразделения</v8:Type></valueType><value xsi:nil="true"/><useRestriction>false</useRestriction>
+		</parameter>
+	<template>
+		<name>Макет1</name>
+		<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
+			<dcsat:item xsi:type="dcsat:TableRow">
+				<dcsat:tableCell><dcsat:item xsi:type="dcsat:Field"><dcsat:value xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>Ведомость по подразделению </v8:content></v8:item></dcsat:value></dcsat:item><dcsat:item xsi:type="dcsat:Field"><dcsat:value xsi:type="dcscor:Parameter">Подразделение</dcsat:value></dcsat:item><dcsat:item xsi:type="dcsat:Field"><dcsat:value xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content> </v8:content></v8:item></dcsat:value></dcsat:item><dcsat:item xsi:type="dcsat:Field"><dcsat:value xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content>с </v8:content></v8:item></dcsat:value></dcsat:item><dcsat:item xsi:type="dcsat:Field"><dcsat:value xsi:type="dcscor:Parameter">ДатаНачалаОтчета</dcsat:value><dcsat:appearance><dcscor:item><dcscor:parameter>Формат</dcscor:parameter><dcscor:value xsi:type="xs:string">ДФ='dd.MM.yyyy'</dcscor:value></dcscor:item></dcsat:appearance></dcsat:item><dcsat:item xsi:type="dcsat:Field"><dcsat:value xsi:type="v8:LocalStringType"><v8:item><v8:lang>ru</v8:lang><v8:content> по </v8:content></v8:item></dcsat:value></dcsat:item><dcsat:item xsi:type="dcsat:Field"><dcsat:value xsi:type="dcscor:Parameter">ДатаОкончанияОтчета</dcsat:value><dcsat:appearance><dcscor:item><dcscor:parameter>Формат</dcscor:parameter><dcscor:value xsi:type="xs:string">ДФ='dd.MM.yyyy'</dcscor:value></dcscor:item></dcsat:appearance></dcsat:item></dcsat:tableCell></dcsat:item>
+		</template>
+		<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+			<dcsat:name>Подразделение</dcsat:name>
+			<dcsat:expression>ПараметрыДанных.Подразделение</dcsat:expression>
+		</parameter>
+	<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+			<dcsat:name>ДатаНачалаОтчета</dcsat:name>
+			<dcsat:expression>ПараметрыДанных.ДатаНачалаОтчета</dcsat:expression>
+		</parameter>
+	<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+			<dcsat:name>ДатаОкончанияОтчета</dcsat:name>
+			<dcsat:expression>ПараметрыДанных.ДатаОкончанияОтчета</dcsat:expression>
+		</parameter>
+	</template>
+	<groupTemplate>
+		<groupName>Заголовок</groupName>
+		<templateType>Header</templateType>
+		<template>Макет1</template>
+	</groupTemplate>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="xs:string">Основной</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Характеристика</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Номенклатура</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemFolder"><dcsset:lwsTitle><v8:item><v8:lang>ru</v8:lang><v8:content>Нач. ост.</v8:content></v8:item></dcsset:lwsTitle><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>НачальныйОстатокКоличество</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>НачальныйОстаток</dcsset:field></dcsset:item><dcsset:placement>Vertically</dcsset:placement></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemFolder"><dcsset:lwsTitle><v8:item><v8:lang>ru</v8:lang><v8:content>Приход</v8:content></v8:item></dcsset:lwsTitle><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>ПриходКоличество</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Приход</dcsset:field></dcsset:item><dcsset:placement>Vertically</dcsset:placement></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemFolder"><dcsset:lwsTitle><v8:item><v8:lang>ru</v8:lang><v8:content>Расход</v8:content></v8:item></dcsset:lwsTitle><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>РасходКоличество</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Расход</dcsset:field></dcsset:item><dcsset:placement>Vertically</dcsset:placement></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemFolder"><dcsset:lwsTitle><v8:item><v8:lang>ru</v8:lang><v8:content>Кон. ост.</v8:content></v8:item></dcsset:lwsTitle><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>КонечныйОстатокКоличество</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>КонечныйОстаток</dcsset:field></dcsset:item><dcsset:placement>Vertically</dcsset:placement></dcsset:item></dcsset:selection><dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Период</dcscor:parameter>
+					<dcscor:value xsi:type="v8:StandardPeriod">
+						<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+						<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+						<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+					</dcscor:value>
+					<dcsset:userSettingID>842efb18-3418-4671-8c5b-a3979a58dc62</dcsset:userSettingID>
+				</dcscor:item>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Подразделение</dcscor:parameter>
+					<dcscor:value xsi:nil="true"/><dcsset:userSettingID>8b552930-28c0-419b-9cc6-e9ef8adbb304</dcsset:userSettingID>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:outputParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>МакетОформления</dcscor:parameter>
+					<dcscor:value xsi:type="xs:string">Зеленый</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>РасположениеПолейГруппировки</dcscor:parameter>
+					<dcscor:value xsi:type="dcsset:DataCompositionGroupFieldsPlacement">SeparatelyAndInTotalsOnly</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>ГоризонтальноеРасположениеОбщихИтогов</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DataCompositionTotalPlacement">None</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>ВертикальноеРасположениеОбщихИтогов</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DataCompositionTotalPlacement">None</dcscor:value>
+				</dcscor:item>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>ВыводитьПараметрыДанных</dcscor:parameter>
+					<dcscor:value xsi:type="dcsset:DataCompositionTextOutputType">DontOutput</dcscor:value>
+				</dcscor:item>
+			</dcsset:outputParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:name>Заголовок</dcsset:name>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:outputParameters>
+					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+						<dcscor:parameter>ВариантИспользованияГруппировки</dcscor:parameter>
+						<dcscor:value xsi:type="dcsset:DataCompositionGroupUseVariant">AdditionalInformation</dcscor:value>
+					</dcscor:item>
+				</dcsset:outputParameters>
+			</dcsset:item>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup"><dcsset:groupItems><dcsset:item xsi:type="dcsset:GroupItemField"><dcsset:field>Характеристика</dcsset:field><dcsset:groupType>Items</dcsset:groupType><dcsset:periodAdditionType>None</dcsset:periodAdditionType></dcsset:item></dcsset:groupItems><dcsset:order><dcsset:item xsi:type="dcsset:OrderItemAuto"/></dcsset:order><dcsset:selection><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Характеристика</dcsset:field></dcsset:item></dcsset:selection><dcsset:item xsi:type="dcsset:StructureItemGroup"><dcsset:groupItems><dcsset:item xsi:type="dcsset:GroupItemField"><dcsset:field>Номенклатура</dcsset:field><dcsset:groupType>Items</dcsset:groupType><dcsset:periodAdditionType>None</dcsset:periodAdditionType></dcsset:item></dcsset:groupItems><dcsset:order><dcsset:item xsi:type="dcsset:OrderItemAuto"/></dcsset:order><dcsset:selection><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Номенклатура</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemFolder"><dcsset:lwsTitle><v8:item><v8:lang>ru</v8:lang><v8:content>Нач. ост.</v8:content></v8:item></dcsset:lwsTitle><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>НачальныйОстатокКоличество</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>НачальныйОстаток</dcsset:field></dcsset:item><dcsset:placement>Vertically</dcsset:placement></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemFolder"><dcsset:lwsTitle><v8:item><v8:lang>ru</v8:lang><v8:content>Приход</v8:content></v8:item></dcsset:lwsTitle><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>ПриходКоличество</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Приход</dcsset:field></dcsset:item><dcsset:placement>Vertically</dcsset:placement></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemFolder"><dcsset:lwsTitle><v8:item><v8:lang>ru</v8:lang><v8:content>Расход</v8:content></v8:item></dcsset:lwsTitle><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>РасходКоличество</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Расход</dcsset:field></dcsset:item><dcsset:placement>Vertically</dcsset:placement></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemFolder"><dcsset:lwsTitle><v8:item><v8:lang>ru</v8:lang><v8:content>Кон. ост.</v8:content></v8:item></dcsset:lwsTitle><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>КонечныйОстатокКоличество</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>КонечныйОстаток</dcsset:field></dcsset:item><dcsset:placement>Vertically</dcsset:placement></dcsset:item></dcsset:selection></dcsset:item></dcsset:item></dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>
