@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "objects": {"items":"Catalog.Номенклатура","warehouses":"Catalog.Склады","receipt":"Document.ПриходнаяНакладная","sale":"Document.РасходнаяНакладная","manual":"Document.Операция","ledger":"AccountingRegister.Хозрасчетный","accounts":"ChartOfAccounts.Управленческий"},
+  "fields": {
+    "items":{"article":"Артикул"},
+    "receipt":{"warehouse":"Склад","item":"СписокНоменклатуры.Номенклатура","quantity":"СписокНоменклатуры.Количество","price":"СписокНоменклатуры.Цена","amount":"СписокНоменклатуры.Сумма"},
+    "sale":{"warehouse":"Склад","item":"СписокНоменклатуры.Номенклатура","quantity":"СписокНоменклатуры.Количество","price":"СписокНоменклатуры.Цена","amount":"СписокНоменклатуры.Сумма"},
+    "ledger":{"item_debit":"Номенклатура","item_credit":"Номенклатура","warehouse_debit":"Склад","warehouse_credit":"Склад","quantity_debit":"Количество","quantity_credit":"Количество","amount":"Сумма"}
+  },
+  "account_codes":{"goods":"01.02","suppliers":"02.02","customers":"01.04","profit":"03"},
+  "analogs":{"mode":"register","object":"InformationRegister.АналогиНоменклатуры","left":"Номенклатура","right":"Аналог"},
+  "demo_data":{"procedure":"CommonModule.ДемонстрационныеДанные.Заполнить"},
+  "reports":{
+    "bu_sales":{"object":"Report.ПродажиБухгалтерские","kind":"function","module":"manager","function":"СформироватьДанные","fields":{"item":"Номенклатура","sold":"Продано","quantity":"Количество","cost":"Себестоимость","revenue":"Выручка","profit":"Прибыль"}},
+    "ou_sales":{"object":"Report.ПродажиОперативные","kind":"function","module":"manager","function":"СформироватьДанные","fields":{"item":"Номенклатура","quantity":"Количество","cost":"Себестоимость","revenue":"Выручка","profit":"Прибыль"}},
+    "ou_statement":{"object":"Report.ВедомостьПоПодразделению","kind":"function","module":"manager","function":"СформироватьДанные","fields":{"item":"Номенклатура","characteristic":"Характеристика","opening":"НачальнаяСтоимость","receipt":"СтоимостьПриход","expense":"СтоимостьРасход","closing":"КонечнаяСтоимость","opening_qty":"НачальноеКоличество","receipt_qty":"КоличествоПриход","expense_qty":"КоличествоРасход","closing_qty":"КонечноеКоличество"}},
+    "pr_bonus":{"object":"Report.Премии","kind":"function","module":"manager","function":"СформироватьДанные","seniority_unit":"years","fields":{"employee":"Сотрудник","seniority":"Стаж","percent":"Процент","amount":"Сумма"}}
+  },
+  "ou":{
+    "objects":{"departments":"Catalog.Подразделения","properties":"Catalog.СвойстваНоменклатуры","policies":"InformationRegister.ПолитикиПодразделений","specification":"InformationRegister.Спецификации","stock":"AccumulationRegister.ОстаткиНоменклатуры","receipt":"Document.ПриходнаяНакладная","sale":"Document.РасходнаяНакладная","assembly":"Document.Сборка","characteristics":"ChartOfCharacteristicTypes.СвойстваОбъектов","property_values":"InformationRegister.ЗначенияСвойствНоменклатуры"},
+    "fields":{
+      "policies":{"department":"Подразделение","method":"Способ"},
+      "policy_values":{"fifo":"Enum.УчетнаяПолитика.ФИФО","lifo":"Enum.УчетнаяПолитика.ЛИФО","average":"Enum.УчетнаяПолитика.Средняя"},
+      "specification":{"block":"Изделие","item":"Деталь","property":"Свойство","quantity":"Количество"},
+      "stock":{"department":"Подразделение","item":"Номенклатура","property":"Свойство","quantity":"Количество","cost":"Стоимость"},
+      "receipt":{"department":"Подразделение","item":"СписокНоменклатуры.Номенклатура","property":"СписокНоменклатуры.Свойство","quantity":"СписокНоменклатуры.Количество","price":"СписокНоменклатуры.Цена","amount":"СписокНоменклатуры.Сумма"},
+      "sale":{"department":"СписокНоменклатуры.Подразделение","item":"СписокНоменклатуры.Номенклатура","quantity":"СписокНоменклатуры.Количество","price":"СписокНоменклатуры.Цена","amount":"СписокНоменклатуры.Сумма"},
+      "assembly":{"source":"ПодразделениеОтправитель","target":"ПодразделениеПолучатель","block":"Изделия.Номенклатура","block_quantity":"Изделия.Количество","extra_item":"ДополнительныеДетали.Номенклатура","extra_property":"ДополнительныеДетали.Свойство","extra_quantity":"ДополнительныеДетали.Количество"},
+      "property_values":{"property":"Свойство","characteristic":"Характеристика","value":"Значение"}
+    }
+  },
+  "pr":{
+    "objects":{"employees":"Catalog.ФизическиеЛица","departments":"Catalog.Подразделения","schedules":"InformationRegister.ГрафикиРаботы","rates":"InformationRegister.СведенияОСотрудниках","scale":"InformationRegister.ШкалаПремий","accrual":"Document.НачислениеЗарплаты"},
+    "results":[{"register":"CalculationRegister.Начисления","employee":"Сотрудник","department":"Подразделение","result":"Результат"}],
+    "calc_types":{"tariff":"ChartOfCalculationTypes.ОсновныеНачисления.Тариф","bonus":"ChartOfCalculationTypes.ОсновныеНачисления.Премия","trip":"ChartOfCalculationTypes.ОсновныеНачисления.Командировка"},"scale_unit":"years",
+    "fields":{"schedules":{"department":"Подразделение","date":"Дата","hours":"Значение"},"rates":{"employee":"Сотрудник","department":"Подразделение","rate":"Оклад"},"scale":{"threshold":"Стаж","percent":"Процент"},"employees":{"seniority_start":"ДатаНачалаСтажа"},"accrual":{"employee":"ОсновныеНачисления.Сотрудник","department":"ОсновныеНачисления.Подразделение","calc_type":"ОсновныеНачисления.ВидРасчета","start":"ОсновныеНачисления.ДатаНачала","end":"ОсновныеНачисления.ДатаОкончания"}}
+  },
+  "forms":{"objects":{"counterparties":"Catalog.Контрагенты","managers":"Catalog.ФизическиеЛица","characteristics":"ChartOfCharacteristicTypes.СвойстваОбъектов"},"form":"Catalog.Контрагенты.Form.ФормаЭлемента","fields":{"counterparties":{"manager":"Менеджер"},"managers":{"list":"ДополнительныеСведения.ВидСведения"}},"values":{"kind":"table","characteristic":"ДополнительныеСведения.ВидСведения","value":"ДополнительныеСведения.Значение"}},
+  "interface":{"sections":{"ou":"Subsystem.ОперативныйУчет","bu":"Subsystem.БухгалтерскийУчет","pr":"Subsystem.ПериодическиеРасчеты"}}
+}

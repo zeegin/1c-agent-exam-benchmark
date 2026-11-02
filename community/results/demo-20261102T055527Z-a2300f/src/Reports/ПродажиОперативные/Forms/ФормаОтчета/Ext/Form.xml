@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<ReportFormType>Main</ReportFormType>
+	<AutoShowState>Auto</AutoShowState>
+	<ReportResultViewMode>Auto</ReportResultViewMode>
+	<ViewModeApplicationOnSetReportResult>Auto</ViewModeApplicationOnSetReportResult>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="НачалоПериода" id="1">
+			<DataPath>НачалоПериода</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Начало периода</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="НачалоПериодаКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="НачалоПериодаРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="КонецПериода" id="4">
+			<DataPath>КонецПериода</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Конец периода</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="КонецПериодаКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="КонецПериодаРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<Button name="Сформировать" id="7">
+			<CommandName>Form.Command.Сформировать</CommandName>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="СформироватьРасширеннаяПодсказка" id="8"/>
+		</Button>
+		<Table name="Результат" id="9">
+			<DataPath>Результат</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="РезультатКонтекстноеМеню" id="10"/>
+			<AutoCommandBar name="РезультатКоманднаяПанель" id="11"/>
+			<ExtendedTooltip name="РезультатРасширеннаяПодсказка" id="12"/>
+			<SearchStringAddition name="РезультатСтрокаПоиска" id="13">
+				<AdditionSource>
+					<Item>Результат</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="РезультатСтрокаПоискаКонтекстноеМеню" id="14"/>
+				<ExtendedTooltip name="РезультатСтрокаПоискаРасширеннаяПодсказка" id="15"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="РезультатСостояниеПросмотра" id="16">
+				<AdditionSource>
+					<Item>Результат</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="РезультатСостояниеПросмотраКонтекстноеМеню" id="17"/>
+				<ExtendedTooltip name="РезультатСостояниеПросмотраРасширеннаяПодсказка" id="18"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="РезультатУправлениеПоиском" id="19">
+				<AdditionSource>
+					<Item>Результат</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="РезультатУправлениеПоискомКонтекстноеМеню" id="20"/>
+				<ExtendedTooltip name="РезультатУправлениеПоискомРасширеннаяПодсказка" id="21"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="РезультатНоменклатура" id="22">
+					<DataPath>Результат.Номенклатура</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номенклатура</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="РезультатНоменклатураКонтекстноеМеню" id="23"/>
+					<ExtendedTooltip name="РезультатНоменклатураРасширеннаяПодсказка" id="24"/>
+				</InputField>
+				<InputField name="РезультатПродано" id="25">
+					<DataPath>Результат.Продано</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Продано</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="РезультатПроданоКонтекстноеМеню" id="26"/>
+					<ExtendedTooltip name="РезультатПроданоРасширеннаяПодсказка" id="27"/>
+				</InputField>
+				<InputField name="РезультатКоличество" id="28">
+					<DataPath>Результат.Количество</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="РезультатКоличествоКонтекстноеМеню" id="29"/>
+					<ExtendedTooltip name="РезультатКоличествоРасширеннаяПодсказка" id="30"/>
+				</InputField>
+				<InputField name="РезультатСебестоимость" id="31">
+					<DataPath>Результат.Себестоимость</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Себестоимость</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="РезультатСебестоимостьКонтекстноеМеню" id="32"/>
+					<ExtendedTooltip name="РезультатСебестоимостьРасширеннаяПодсказка" id="33"/>
+				</InputField>
+				<InputField name="РезультатВыручка" id="34">
+					<DataPath>Результат.Выручка</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выручка</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="РезультатВыручкаКонтекстноеМеню" id="35"/>
+					<ExtendedTooltip name="РезультатВыручкаРасширеннаяПодсказка" id="36"/>
+				</InputField>
+				<InputField name="РезультатПрибыль" id="37">
+					<DataPath>Результат.Прибыль</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Прибыль</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="РезультатПрибыльКонтекстноеМеню" id="38"/>
+					<ExtendedTooltip name="РезультатПрибыльРасширеннаяПодсказка" id="39"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:ReportObject.ПродажиОперативные</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="НачалоПериода" id="2">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="КонецПериода" id="3">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Результат" id="4">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Номенклатура" id="1">
+					<Type>
+						<v8:Type>cfg:CatalogRef.Номенклатура</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Продано" id="2">
+					<Type>
+						<v8:Type>cfg:CatalogRef.Номенклатура</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Количество" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Себестоимость" id="4">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Выручка" id="5">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Прибыль" id="6">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Сформировать" id="1">
+			<Action>Сформировать</Action>
+		</Command>
+	</Commands>
+</Form>
